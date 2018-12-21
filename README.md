@@ -18,6 +18,16 @@
     </tr>
 </table>
 
+Defined `error.code` if `throw_err` is true :
+
++ `NO_URL` if `url` is empty or not string
++ `UNSUPPORTED_URL` if url does not follow one of these general pattern :
+    + `https://www.youtube.com/watch/...`
+    + `https://m.youtube.com/watch/...`
+    + `https://youtu.be/...`
+
+May throw other unhandled caught error if `throw_error` is true.
+
 ---
 
 This module was not produced by or directly for YouTube, LLC and has no affiliation with
