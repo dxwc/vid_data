@@ -164,6 +164,36 @@ describe('get_video() test', () =>
             ) === 'Bb60YUkEtwk'
         );
     });
+
+    it('should throw error for valid url format with invalid id', () =>
+    {
+        let id;
+        try
+        {
+            id = vd.get_video_id
+            (
+                `https://m.youtube.com/watch?feature=youtu.be&v=Bb60Y.kEtwk&t=4`,
+                true
+            )
+
+            throw id;
+        }
+        catch(err)
+        {
+            assert(err.code === 'PARSE_FAILED', err);
+        }
+    });
+
+    it('should return null for valid url format with invalid id', () =>
+    {
+        assert
+        (
+            vd.get_video_id
+            (
+                `https://m.youtube.com/watch?feature=youtu.be&v=Bb60Y.kEtwk&t=4`
+            ) === null
+        );
+    });
 });
 
 function check_invalid_url(url, throw_err)

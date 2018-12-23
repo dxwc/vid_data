@@ -1,8 +1,10 @@
 #### get_video_id(url, throw_err)
 
+Given Youtube video url, returns video id.
+
 <table>
     <tr>
-        <td><strong>Name</strong></td>
+        <td><strong>Parameter</strong></td>
         <td><strong>Type</strong></td>
         <td><strong>Description</strong></td>
     </tr>
@@ -14,19 +16,45 @@
     <tr>
         <td><code>throw_err</code></td>
         <td>boolean</td>
-        <td>Whether to throw or return null on error</a></td>
+        <td>
+            If <code>false</code> (default) returns <code>null</code> if cannot return id<br>
+            If <code>true</code> throw error if cannot return id
+        </td>
     </tr>
 </table>
 
-Defined `error.code` if `throw_err` is true :
+If `throw_err` parameter is `true`, the following errors can be thrown :
 
-+ `NO_URL` if `url` is empty or not string
-+ `UNSUPPORTED_URL` if url does not follow one of these general pattern :
-    + `https://www.youtube.com/watch/...`
-    + `https://m.youtube.com/watch/...`
-    + `https://youtu.be/...`
-
-May throw other unhandled caught error if `throw_error` is true.
+<table>
+    <tr>
+        <td><strong>Error code</strong></td>
+        <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+        <td><code>NO_URL</code></td>
+        <td><code>url</code> is empty or not string</td>
+    </tr>
+    <tr>
+        <td><code>UNSUPPORTED_URL</code></td>
+        <td>
+        If <code>url</code> does not follow one of these general pattern:<br>
+            https://www.youtube.com/watch/...<br>
+            https://m.youtube.com/watch/...<br>
+            https://youtu.be/...
+        </td>
+    </tr>
+    <tr>
+        <td><code>PARSE_FAILED</code></td>
+        <td>
+            If <code>url</code> is valid but could not parse id<br>
+            If invalid characters found in parsed id
+        </td>
+    </tr>
+    <tr>
+        <td><code>UNEXPECTED_ERROR</code></td>
+        <td>Any other error thrown, <code>stack</code> will be available</td>
+    </tr>
+</table>
 
 ---
 
