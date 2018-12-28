@@ -9,6 +9,11 @@ const format_2 = new RegExp
     `^https:\\/\\/youtu.be\\/([a-zA-Z0-9_\\-]{11})(?:(\\?.*)|$)`
 );
 
+const format_3 = new RegExp
+(
+    `^https:\\/\\/www\\.youtube\\.com\\/embed\\/([a-zA-Z0-9_\\-]{11})(?:(\\?.*)|$)`
+);
+
 /**
  * @param {String} url - youtube video watch URL
  * @returns {?String} if valid url, returns 11 character video id string, else null
@@ -21,6 +26,9 @@ function get_video_id(url)
     if(arr) return arr[1];
 
     arr = url.match(format_2);
+    if(arr) return arr[1];
+
+    arr = url.match(format_3);
     if(arr) return arr[1];
 
     return null;

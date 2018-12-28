@@ -68,6 +68,26 @@ describe('get_video() test', () =>
             === null
         );
 
+        assert
+        (
+            vd.get_video_id
+            (`https://www.youtube.com/embed/49_JNQRrffQa`)
+            === null
+        );
+
+        assert
+        (
+            vd.get_video_id
+            (`https://www.youtube.com/embed/49_JNQRrffQ&a=b`)
+            === null
+        );
+
+        assert
+        (
+            vd.get_video_id
+            (`https://www.youtube.com/embed?49_JNQRrffQ?rel=0&autoplay=1`)
+            === null
+        );
     });
 
     it('should return correct id for valid url and id', () =>
@@ -114,6 +134,22 @@ describe('get_video() test', () =>
                 `https://www.youtube.com/watch?feature=youtu.be&v=` +
                 `Bb60YUkEtwk&t=4&app=desktop`
             ) === `Bb60YUkEtwk`
+        );
+
+        assert
+        (
+            vd.get_video_id
+            (
+                `https://www.youtube.com/embed/49_JNQRrffQ`
+            ) === `49_JNQRrffQ`
+        );
+
+        assert
+        (
+            vd.get_video_id
+            (
+                `https://www.youtube.com/embed/49_JNQRrffQ?rel=0&autoplay=1`
+            ) === `49_JNQRrffQ`
         );
     });
 });
