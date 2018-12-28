@@ -4,7 +4,11 @@ _Given Youtube video url, returns video id_
 
 Parameter :
 
-+ `url` : A youtube video watch URL as string
++ `url` : A youtube video watch URL as string. Supported url format example :
+    + `https://www.youtube.com/watch?...`
+    + `https://m.youtube.com/watch?...`
+    + `https://youtu.be/...`
+    + `https://www.youtube.com/embed/...`
 
 Returns :
 
