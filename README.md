@@ -1,60 +1,15 @@
-#### get_video_id(url, throw_err)
+#### get_video_id(url)
 
-Given Youtube video url, returns video id.
+_Given Youtube video url, returns video id_
 
-<table>
-    <tr>
-        <td><strong>Parameter</strong></td>
-        <td><strong>Type</strong></td>
-        <td><strong>Description</strong></td>
-    </tr>
-    <tr>
-        <td><code>url</code></td>
-        <td>string</td>
-        <td>Youtube video watch URL</td>
-    </tr>
-    <tr>
-        <td><code>throw_err</code></td>
-        <td>boolean</td>
-        <td>
-            If <code>false</code> (default) returns <code>null</code> if cannot return id<br>
-            If <code>true</code> throw error if cannot return id
-        </td>
-    </tr>
-</table>
+Parameter :
 
-If `throw_err` parameter is `true`, the following errors can be thrown :
++ `url` : A youtube video watch URL as string
 
-<table>
-    <tr>
-        <td><strong>Error code</strong></td>
-        <td><strong>Description</strong></td>
-    </tr>
-    <tr>
-        <td><code>NO_URL</code></td>
-        <td><code>url</code> is empty or not string</td>
-    </tr>
-    <tr>
-        <td><code>UNSUPPORTED_URL</code></td>
-        <td>
-        If <code>url</code> does not follow one of these general pattern:<br>
-            https://www.youtube.com/watch/...<br>
-            https://m.youtube.com/watch/...<br>
-            https://youtu.be/...
-        </td>
-    </tr>
-    <tr>
-        <td><code>PARSE_FAILED</code></td>
-        <td>
-            If <code>url</code> is valid but could not parse id<br>
-            If invalid characters found in parsed id
-        </td>
-    </tr>
-    <tr>
-        <td><code>UNEXPECTED_ERROR</code></td>
-        <td>Any other error thrown, <code>stack</code> will be available</td>
-    </tr>
-</table>
+Returns :
+
++ A string containing video id, or
++ null
 
 ---
 
