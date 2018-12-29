@@ -1,9 +1,30 @@
 {
+  "name": "vid_data",
+  "version": "0.0.0",
+  "description": "Get youtube channel ID and video ID",
+  "keywords": [
+    "youtube",
+    "video",
+    "channel",
+    "id",
+    "data"
+    ],
+  "main": "index.js",
   "scripts": {
     "test": "npx mocha --timeout 10000"
   },
   "devDependencies": {
     "faker": "^4.1.0",
     "mocha": "^5.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dxwc/vid_data.git"
+  },
+  "author": "dxwc",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/dxwc/vid_data/issues"
+  },
+  "homepage": "https://github.com/dxwc/vid_data#readme"
 }
