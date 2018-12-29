@@ -1,10 +1,10 @@
-#### get_video_id(url)
+### get_video_id(url)
 
-_Given Youtube video url, returns video id_
+_Given Youtube video URL, returns video id_
 
 Parameter :
 
-+ `url` : A youtube video watch URL as string. Supported url format example :
++ `url` : A youtube video watch URL as string. Supported URL format example :
     + `https://www.youtube.com/watch?...`
     + `https://m.youtube.com/watch?...`
     + `https://youtu.be/...`
@@ -15,6 +15,12 @@ Returns :
 
 + A string containing video id, or
 + null
+
+### get_channel_id(url)
+
+_Given Youtube channel, video or user URL, returns channel id_
+
+TODO
 
 ---
 
