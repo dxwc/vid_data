@@ -89,7 +89,7 @@ async function get_channel_id(url, offline, print_error)
     {
         try
         {
-            if(video_id && format_3.test(url))
+            if(!format_5.test(url))
                 url = `https://www.youtube.com/watch?v=${video_id}`
 
             html = await download(url);
