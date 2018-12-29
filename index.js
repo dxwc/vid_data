@@ -6,13 +6,13 @@ const format_1 = new RegExp
 
 const format_2 = new RegExp
 (
-    `^https:\\/\\/youtu.be\\/([a-zA-Z0-9_\\-]{11})(?:(\\?.*)|$)`
+    `^https:\\/\\/youtu.be\\/([a-zA-Z0-9_\\-]{11})`
 );
 
 const format_3 = new RegExp
 (
     `^https:\\/\\/www\\.(?:youtube|youtube\\-nocookie)*\\.com\\/embed\\/` +
-    `([a-zA-Z0-9_\\-]{11})(?:(\\?.*)|$)`
+    `([a-zA-Z0-9_\\-]{11})`
 );
 
 /**

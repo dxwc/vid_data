@@ -71,20 +71,6 @@ describe('get_video() test', () =>
         assert
         (
             vd.get_video_id
-            (`https://www.youtube.com/embed/49_JNQRrffQa`)
-            === null
-        );
-
-        assert
-        (
-            vd.get_video_id
-            (`https://www.youtube.com/embed/49_JNQRrffQ&a=b`)
-            === null
-        );
-
-        assert
-        (
-            vd.get_video_id
             (`https://www.youtube.com/embed?49_JNQRrffQ?rel=0&autoplay=1`)
             === null
         );
@@ -125,6 +111,13 @@ describe('get_video() test', () =>
             vd.get_video_id
             (`https://youtu.be/Bb60YUkEtwk?t=4`)
             === `Bb60YUkEtwk`
+        );
+
+        assert
+        (
+            vd.get_video_id
+            (`https://www.youtube.com/embed/49_JNQRrffQa`)
+            === `49_JNQRrffQ`
         );
 
         assert
