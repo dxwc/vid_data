@@ -3,7 +3,7 @@ const faker  = require('faker');
 
 const vd = require('../index.js');
 
-describe('get_video() test', () =>
+describe('get_video_id() test', () =>
 {
     it('should return null for invalid url or id', () =>
     {
