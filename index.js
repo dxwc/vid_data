@@ -110,5 +110,21 @@ async function get_channel_id(url, offline, print_error)
     return null;
 }
 
-module.exports.get_video_id   = get_video_id;
-module.exports.get_channel_id = get_channel_id;
+/**
+ * Test to see if an input URL is one of valid format to get channel ID information
+ * @param {} url Youtube URL
+ * @returns {Boolean} True if valid URL to get channel ID, false otherwise
+ */
+function is_valid_to_get_channel_id(url)
+{
+    if(!url || url.constructor !== String) return false;
+    return format_1.test(url) ||
+           format_2.test(url) ||
+           format_3.test(url) ||
+           format_4.test(url) ||
+           format_5.test(url);
+}
+
+module.exports.get_video_id               = get_video_id;
+module.exports.get_channel_id             = get_channel_id;
+module.exports.is_valid_to_get_channel_id = is_valid_to_get_channel_id;

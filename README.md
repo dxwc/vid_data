@@ -43,6 +43,21 @@ Returns :
 + A promise that resolves a string containing channel ID or,
 + A promise that resolves null
 
+## is_valid_to_get_channel_id(url)
+
+_Given a URL, returns a Boolean indicating whether or not it is valid URL to get_
+_channel id_
+
+Parameter :
+
++ `url` :  Any type
+
+Returns :
+
++ True if `url` is one of the valid format to get channel ID information
+    + See **get_channel_id()** above for URL formats that are considered valid
++ False if `url` is not one of the valid format
+
 ---
 
 This software was not produced by or directly for YouTube, LLC and has no affiliation
