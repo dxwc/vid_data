@@ -9,6 +9,7 @@ Parameter :
     + `https://m.youtube.com/watch?...`
     + `https://youtu.be/...`
     + `https://www.youtube.com/embed/...`
+    + `https://www.youtube-nocookie.com/embed/...`
 
 Returns :
 

@@ -151,5 +151,13 @@ describe('get_video() test', () =>
                 `https://www.youtube.com/embed/49_JNQRrffQ?rel=0&autoplay=1`
             ) === `49_JNQRrffQ`
         );
+
+        assert
+        (
+            vd.get_video_id
+            (
+                `https://www.youtube-nocookie.com/embed/49_JNQRrffQ?rel=0&autoplay=1`
+            ) === `49_JNQRrffQ`
+        );
     });
 });

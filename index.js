@@ -11,7 +11,8 @@ const format_2 = new RegExp
 
 const format_3 = new RegExp
 (
-    `^https:\\/\\/www\\.youtube\\.com\\/embed\\/([a-zA-Z0-9_\\-]{11})(?:(\\?.*)|$)`
+    `^https:\\/\\/www\\.(?:youtube|youtube\\-nocookie)*\\.com\\/embed\\/` +
+    `([a-zA-Z0-9_\\-]{11})(?:(\\?.*)|$)`
 );
 
 /**
