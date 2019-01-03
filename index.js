@@ -205,3 +205,5 @@ async function get_playlist_videos(url, offline, print_error)
 module.exports.get_video_id               = get_video_id;
 module.exports.get_channel_id             = get_channel_id;
 module.exports.is_valid_to_get_channel_id = is_valid_to_get_channel_id;
+module.exports.get_playlist_id            = get_playlist_id;
+module.exports.get_playlist_videos        = get_playlist_videos;
