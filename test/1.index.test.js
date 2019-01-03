@@ -15,5 +15,11 @@ describe('vid_data test', () =>
             vd.is_valid_to_get_channel_id.constructor === Function,
             'is a function'
         );
+        assert(vd.get_playlist_id.constructor === Function, 'is a function');
+        assert
+        (
+            util.types.isAsyncFunction(vd.get_playlist_videos),
+            'is a asyc function'
+        );
     });
 });
