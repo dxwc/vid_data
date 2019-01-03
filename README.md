@@ -55,9 +55,52 @@ Parameter :
 Returns :
 
 + True if `url` is one of the valid format to get channel ID information
-    + See **get_channel_id()** above for URL formats that are considered valid
+    + See get_channel_id() above for URL formats that are considered valid
 + False if `url` is not one of the valid format
 
+## get_playlist_id(url)
+
+_Given a playlist URL, returns the playlist's ID_
+
+Parameter :
+
++ `url` :  A youtube account user created playlist URL. Supported url format example:
+    + `https://www.youtube.com/playlist?list=...`
+    + `https://m.youtube.com/playlist?list=...`
+    + `https://www.youtube.com/watch?v=naHNhDHK4VU&list=...`
+    + `https://m.youtube.com/watch?v=naHNhDHK4VU&list=...`
+
+Returns :
+
++ A string containing playlist ID, or
++ null
+
+## get_playlist_videos(url, offline, print_error)
+
+_Given playlist URL, returns an ordered array of playlist video IDs_
+
+Parameters :
+
++ `url` : A youtube account user created or custom playlist URL. Supported url format
+  example:
+    + `https://www.youtube.com/playlist?list=...`
+    + `https://m.youtube.com/playlist?list=...`
+    + `https://www.youtube.com/watch?v=naHNhDHK4VU&list=...`
+    + `https://m.youtube.com/watch?v=naHNhDHK4VU&list=...`
+    + `https://www.youtube.com/embed/naHNhDHK4VU?playlist=...,...,...`
++ `offline` : An optional boolean argument to indicate whether or not to make HTTP
+  request to get channel ID.
+    + Default is false (makes HTTP request). Note that only URLs formatted as
+    `https://www.youtube.com/embed/naHNhDHK4VU?playlist=...,...,...` are parsable
+    offline
++ `print_error` : An optional boolean argument to indicate whether or not to print
+   any possible error message to console. Only useful for debugging. Default false.
+
+Returns :
+
++ A promise that resolves a non-empty array of ordered video IDs of the playlist
+    + The maximum length of this array is currently 100
++ If invalid, error, or not parsable, returns a promise that resolves null
 ---
 
 This software was not produced by or directly for YouTube, LLC and has no affiliation
