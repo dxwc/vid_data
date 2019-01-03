@@ -27,6 +27,23 @@ const format_5 = new RegExp
     `^https:\\/\\/(?:www|m)\.youtube\\.com\\/user\\/(.+)(?:(\\/*.|$))`
 );
 
+const format_6 = new RegExp
+(
+    `https:\\/\\/(?:www|m)\\.youtube\\.com\\/(?:playlist|watch)\\?` +
+    `(?:.+\\&|)list=([a-zA-Z0-9_\\-]{34})(?:(\\&.*)|$)`
+);
+
+const format_7 = new RegExp
+(
+    `^https:\\/\\/www\\.(?:youtube|youtube\\-nocookie)*\\.com\\/embed\\/` +
+    `(?:[a-zA-Z0-9_\-]{11})\\?(?:.+\\&|)playlist=([a-zA-Z0-9_\\-,]+)(?:(\\&.*)|$)`
+);
+
+const format_plist = new RegExp
+(
+    /data\-video\-id="([a-zA-Z0-9_\\-]{11})"/g
+);
+
 /**
  * @param {String} url - youtube video watch URL
  * @returns {?String} if valid url, returns 11 character video id string, else null
@@ -123,6 +140,66 @@ function is_valid_to_get_channel_id(url)
            format_3.test(url) ||
            format_4.test(url) ||
            format_5.test(url);
+}
+
+/**
+ * Given valid playlist URL, returns playlist ID
+ * @param {String} url Youtube playlist URL
+ * @returns {?String} If playlist id found, returns string id, else return null
+ */
+function get_playlist_id(url)
+{
+    if(!url || url.constructor !== String) return null;
+    let arr = url.match(format_6);
+    return arr ? arr[1] : null;
+}
+
+/**
+ * Given a youtube playlist link, returns maximum of 10 ordered array of the video id
+ * from playlist
+ * @param {String} url Youtube playlist URL
+ * @param {Boolean} [offline=false] - if true, does not make any HTTP request. Note:
+ * If this is set to true, only channel URLs will be parsed
+ * @param {Boolean} [print_error=false] - if true, console.error any error
+ * @returns {Promise} resolves with non-empty array of video id or null
+ */
+async function get_playlist_videos(url, offline, print_error)
+{
+    if(!url || url.constructor !== String) return null;
+
+    let vid = [];
+    let pl_id = get_playlist_id(url);
+    if(offline && pl_id) return null;
+
+    try
+    {
+        let arr = url.match(format_3);
+        if(arr)
+        {
+            vid.push(arr[1]);
+            arr = url.match(format_7);
+
+            if(arr)                    return vid.concat(arr[1].split(','));
+            else if(!pl_id || offline) return null;
+            else                       vid = [];
+        }
+        else if(!pl_id || offline)
+        {
+            return null;
+        }
+
+        let html = await download(`https://www.youtube.com/playlist?list=${pl_id}`);
+        let current;
+        while(current = format_plist.exec(html))
+            vid.push(current[1]);
+
+        return vid.length ? vid : null;
+    }
+    catch(err)
+    {
+        if(print_error) console.error(err);
+        return null;
+    }
 }
 
 module.exports.get_video_id               = get_video_id;
