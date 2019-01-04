@@ -1,3 +1,11 @@
+<p align='center'>
+    <img src="https://nodei.co/npm/vid_data.png">
+</p>
+<p align='center'>
+    <img src='https://img.shields.io/david/dxwc/vid_data.svg?style=for-the-badge'>
+    <img src='https://img.shields.io/npm/dt/vid_data.svg?style=for-the-badge'>
+</p>
+
 ## get_video_id(url)
 
 _Given Youtube video URL, returns video id_
