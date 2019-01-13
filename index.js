@@ -79,7 +79,7 @@ function download(url)
             res.on('end',   ()      => resolve(data));
             res.on('error', (err)   => reject(err));
         })
-        .on(('error'), (err) => reject(err));
+        .on('error', (err) => reject(err));
     });
 }
 
