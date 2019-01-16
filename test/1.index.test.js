@@ -21,5 +21,10 @@ describe('vid_data test', () =>
             util.types.isAsyncFunction(vd.get_playlist_videos),
             'is a asyc function'
         );
+        assert
+        (
+            util.types.isAsyncFunction(vd.get_channel_id_and_name),
+            'is a asyc function'
+        );
     });
 });

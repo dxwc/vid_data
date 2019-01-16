@@ -202,8 +202,97 @@ async function get_playlist_videos(url, offline, print_error)
     }
 }
 
+/**
+ * Given a video or channle URL, makes a single HTTP request and returns an object
+ * containing channel_id and channel_name
+ * @param {String} url Youtube video/video shortcut/embed/channel/user URL
+ * @returns {Promise} resolves with an object containing channel id and name or null
+ */
+async function get_channel_id_and_name(url)
+{
+    try
+    {
+        let is_channel_link = url => format_4.test(url) || format_5.test(url);
+        let is_video_link   = url => format_1.test(url) || format_2.test(url);
+        let is_embed_link   = url => format_3.test(url);
+
+        if
+        (
+            !is_channel_link(url) &&
+            !is_video_link(url)   &&
+            !is_embed_link(url)
+        )
+            return null;
+
+        let html = await download(url);
+        let obj = { };
+
+        if(is_channel_link(url))
+        {
+            let found_channel_id = html.indexOf(`itemprop="channelId"`);
+            if(found_channel_id === -1) return null;
+            let ch_id = html.substring(found_channel_id + 30, found_channel_id+54);
+            if(/[a-zA-Z0-9_\\-]{24}/.test(ch_id)) obj.channel_id = ch_id;
+            else return null;
+
+            let found_channel_title_i = html.indexOf(`itemprop="name"`);
+            if(found_channel_title_i === -1) return null;
+            let found_channel_title_e = html.indexOf(`">`, found_channel_title_i);
+            if(found_channel_title_e === -1) return null;
+            obj.channel_name =
+            html.substring(found_channel_title_i + 25, found_channel_title_e);
+
+            return obj;
+        }
+
+        let found_channel_id = html.indexOf('channelId');
+        if(found_channel_id === -1) return null;
+        let ch_id = html.substring(found_channel_id + 14,  found_channel_id + 38);
+        if(/[a-zA-Z0-9_\\-]{24}/.test(ch_id)) obj.channel_id = ch_id;
+
+        if(is_embed_link(url))
+        {
+            let found_channel_title_i = html.indexOf('"expanded_title":');
+            if(found_channel_title_i === -1) return null;
+            let found_channel_title_e =
+            html.indexOf('",', found_channel_title_i + 18);
+            if(found_channel_title_e === -1) return null;
+            obj.channel_name =
+            html.substring(found_channel_title_i + 18, found_channel_title_e);
+
+            /*
+            let found_channel_thumb_i =
+            html.indexOf(`\\"channelThumbnail\\":{\\"thumbnails\\":[{\\"url\\":\\"`);
+            let found_channel_thumb_e =
+            html.indexOf(`\\",`, found_channel_thumb_i + 49);
+            obj.channel_thumbnail =
+            html.substring(found_channel_thumb_i + 49, found_channel_thumb_e);
+            obj.channel_thumbnail = obj.channel_thumbnail.replace(/\\\\/gi, '');
+            obj.channel_thumbnail = obj.channel_thumbnail.replace(/\\/gi, '');
+            */
+        }
+        else
+        {
+            let found_channel_title_i = html.indexOf('"author":');
+            if(found_channel_title_i === -1) return null;
+            let found_channel_title_e =
+            html.indexOf('",', found_channel_title_i + 10);
+            if(found_channel_title_e === -1) return null;
+            obj.channel_name =
+            html.substring(found_channel_title_i + 10, found_channel_title_e);
+        }
+
+        return obj;
+    }
+    catch(err)
+    {
+        return null;
+    }
+}
+
 module.exports.get_video_id               = get_video_id;
 module.exports.get_channel_id             = get_channel_id;
 module.exports.is_valid_to_get_channel_id = is_valid_to_get_channel_id;
 module.exports.get_playlist_id            = get_playlist_id;
 module.exports.get_playlist_videos        = get_playlist_videos;
+module.exports.get_channel_id_and_name    = get_channel_id_and_name;

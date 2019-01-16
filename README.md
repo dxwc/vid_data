@@ -109,6 +109,15 @@ Returns :
 + A promise that resolves a non-empty array of ordered video IDs of the playlist
     + The maximum length of this array is currently 100
 + If invalid, error, or not parsable, returns a promise that resolves null
+
+## get_channel_id_and_name(url)
+
+Given a video/video shortcut/embed/channel/user `url`, makes a single HTTP request and
+returns an object containing keys `channel_id` and `channel_name` with string values.
+On error or invalid url, returns null.
+
+NOTE: this function is comparatively more susceptible to break on changes.
+
 ---
 
 This software was not produced by or directly for YouTube, LLC and has no affiliation
