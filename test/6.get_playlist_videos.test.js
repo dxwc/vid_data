@@ -83,5 +83,21 @@ describe('get_playlist_videos() test', () =>
                 `Tka3t0CHBP4,5a740OZXI6E`
             )).constructor === Array
         );
+
+        assert
+        (
+            (await vd.get_playlist_videos
+            (
+                `https://www.youtube.com/playlist?list=PL72C62342291D5DAE`
+            )).constructor === Array
+        );
+
+        assert
+        (
+            (await vd.get_playlist_videos
+            (
+                `https://www.youtube.com/watch?v=kBdfcR-8hEY&list=PL72C62342291D5DAE`
+            )).constructor === Array
+        );
     });
 });

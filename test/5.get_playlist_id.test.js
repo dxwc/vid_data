@@ -46,5 +46,21 @@ describe('get_playlist_id() test', () =>
                 `=PLcviVtB85dLwp3cUw85eBJEPK8SwpNMBC&index=8&t=0s`
             ) === `PLcviVtB85dLwp3cUw85eBJEPK8SwpNMBC`
         );
+
+        assert
+        (
+            vd.get_playlist_id
+            (
+                `https://www.youtube.com/watch?v=kBdfcR-8hEY&list=PL72C62342291D5DAE`
+            ) === `PL72C62342291D5DAE`
+        );
+
+        assert
+        (
+            vd.get_playlist_id
+            (
+                ` https://www.youtube.com/playlist?list=PL72C62342291D5DAE`
+            ) === `PL72C62342291D5DAE`
+        );
     });
 });

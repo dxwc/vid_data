@@ -30,7 +30,7 @@ const format_5 = new RegExp
 const format_6 = new RegExp
 (
     `https:\\/\\/(?:www|m)\\.youtube\\.com\\/(?:playlist|watch)\\?` +
-    `(?:.+\\&|)list=([a-zA-Z0-9_\\-]{34})(?:(\\&.*)|$)`
+    `(?:.+\\&|)list=([a-zA-Z0-9_\\-]{12,})(?:(\\&.*)|$)`
 );
 
 const format_7 = new RegExp
